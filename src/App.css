@@ -1,38 +1,64 @@
 .App {
   text-align: center;
+  font-family: sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.board-container {
+  display: inline-block;
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.board {
+  display: inline-block;
+  border: 2px solid #333;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.row {
   display: flex;
-  flex-direction: column;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #999;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #bbb;
+  /* Плавное изменение фона и масштабирование при открытии */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.cell.revealed {
+  background-color: #e0e0e0;
+  cursor: default;
+  transform: scale(1.0);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cell:not(.revealed):hover {
+  background-color: #ccc;
+}
+
+.cell.mine {
+  background-color: #f00;
+  /* Можно добавить анимацию мерцания для мины */
+  animation: blink 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
 }
